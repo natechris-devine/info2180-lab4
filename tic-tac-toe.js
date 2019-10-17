@@ -10,6 +10,10 @@ window.onload = function () {
         ele.addEventListener('mouseout', () => {ele.classList.remove('hover');})
     }
     gameBoard = gameBoard.children;
+
+    //The NewGame Button
+    let newGame = document.getElementsByClassName('btn');
+    newGame[0].addEventListener('click', () => {location.reload();});
 }
 
 function squareSelect(ele) {
