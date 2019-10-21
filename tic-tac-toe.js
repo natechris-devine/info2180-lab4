@@ -1,5 +1,6 @@
 let playerTurn = 'X';
 let gameBoard;
+let gameWon = false;
 
 window.onload = function () {
     gameBoard = document.getElementById("board");
@@ -18,7 +19,7 @@ window.onload = function () {
 
 function squareSelect(ele) {
     let eleCl = ele.classList
-    if (!(eleCl.contains('X') || eleCl.contains('O'))) {
+    if (!(eleCl.contains('X') || eleCl.contains('O')) && !gameWon) {
         eleCl.add(playerTurn);
         ele.innerHTML = playerTurn;
         checkWin();
@@ -31,7 +32,6 @@ function squareSelect(ele) {
 }
 
 function checkWin() {
-    console.log(gameBoard);
     const compare = (pos1, pos2, pos3) => {
         if ((gameBoard[pos1].innerHTML === gameBoard[pos2].innerHTML) && (gameBoard[pos1].innerHTML === gameBoard[pos3].innerHTML) && (gameBoard[pos1].innerHTML !== "")) {
             return true;
@@ -49,6 +49,7 @@ function checkWin() {
         const item = document.getElementById('status');
         item.innerHTML = "Congratulations! " + playerTurn + " is the Winner!";
         item.classList.add('you-won');
+        gameWon = true; // Prevents squares from being clicked after a victory
     } else { 
         null; 
     }
